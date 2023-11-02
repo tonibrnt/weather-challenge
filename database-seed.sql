@@ -1,0 +1,2 @@
+CREATE DATABASE challengedb;
+GRANT ALL PRIVILEGES ON DATABASE challengedb TO postgres;

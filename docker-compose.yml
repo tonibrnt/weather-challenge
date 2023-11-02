@@ -1,0 +1,22 @@
+version: '3'
+services:
+  backend:
+    image: node:16.20
+    depends_on:
+      - postgres-db
+    volumes:
+      - $PWD:/challenge-api
+    ports:
+      - 3000:3000
+    command: bash -c "cd /challenge-api && npm i && npx tsc && npm start"
+  postgres-db:
+    image: postgres:14.9
+    environment:
+      - POSTGRES_USER=postgres
+      - POSTGRES_PASSWORD=challengepsw
+      - POSTGRES_DB=challengedb
+    ports:
+      - 15432:5432
+    volumes:
+      - ./database-seed.sql:/docker-entrypoint-initdb.d/database-seed.sql
+      
